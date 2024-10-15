@@ -1,5 +1,22 @@
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data() {
+    return {
+      projects: [],
+    };
+  },
+  methods: {
+    getAllProjects() {
+      axios.get("http://127.0.0.1:8000/api/projects").then((resp) => {
+        this.projects = resp.data.results;
+      });
+    },
+  },
+  created() {
+    this.getAllProjects();
+  },
+};
 </script>
 <template>
   <div class="container">
@@ -9,6 +26,21 @@ export default {};
       </div>
       <div class="col-12">
         <!-- elenco progetti -->
+        <div class="row gy-3">
+          <div
+            class="col-12 col-md-6 col-lg-4"
+            v-for="proj in projects"
+            :key="proj.id"
+          >
+            <div class="card">
+              <img src="" alt="" class="card-img-top" />
+              <div class="card-body">
+                <h4 class="card-title">Titolo</h4>
+                <p>Lorem ipsum</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
