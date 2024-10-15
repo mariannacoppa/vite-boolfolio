@@ -4,6 +4,11 @@ export default {
   props: {
     project: Object,
   },
+  methods: {
+    truncateText(text) {
+      return text.substr(0, 50) + "...";
+    },
+  },
 };
 </script>
 <template>
@@ -35,7 +40,7 @@ export default {
               {{ tech.name }}
             </li>
           </ul>
-          <p>{{ project.summary }}</p>
+          <p>{{ truncateText(project.summary) }}</p>
         </div>
       </div>
     </div>
