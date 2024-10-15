@@ -6,7 +6,7 @@ export default {
   },
   methods: {
     truncateText(text) {
-      return text.substr(0, 50) + "...";
+      return text != null ? text.substr(0, 50) + "..." : "";
     },
   },
 };

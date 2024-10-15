@@ -8,13 +8,25 @@ export default {
   data() {
     return {
       projects: [],
+      last_page: null,
+      current_page: null,
     };
   },
   methods: {
     getAllProjects() {
       axios.get("http://127.0.0.1:8000/api/projects").then((resp) => {
         this.projects = resp.data.results.data;
+        this.last_page = resp.data.results.last_page;
+        this.current_page = resp.data.results.current_page;
       });
+    },
+    goToPage(page) {
+      axios
+        .get("http://127.0.0.1:8000/api/projects?page=" + page)
+        .then((resp) => {
+          this.projects = resp.data.results.data;
+          this.current_page = resp.data.results.current_page;
+        });
     },
   },
   created() {
@@ -47,10 +59,12 @@ export default {
             <li class="page-item">
               <a class="page-link" href="#">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            <li class="page-item" v-for="i in last_page">
+              <a class="page-link" href="#" @click="goToPage(i)">{{ i }}</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
           </ul>
         </nav>
       </div>
