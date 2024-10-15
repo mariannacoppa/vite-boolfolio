@@ -1,6 +1,10 @@
 <script>
 import axios from "axios";
+import ProjectCard from "./components/ProjectCard.vue";
 export default {
+  components: {
+    ProjectCard,
+  },
   data() {
     return {
       projects: [],
@@ -27,27 +31,11 @@ export default {
       <div class="col-12">
         <!-- elenco progetti -->
         <div class="row gy-3">
-          <div
-            class="col-12 col-md-6 col-lg-4"
+          <ProjectCard
             v-for="proj in projects"
             :key="proj.id"
-          >
-            <div class="card">
-              <img
-                :src="
-                  proj.image != null
-                    ? `http://127.0.0.1:8000/storage/${proj.image}`
-                    : 'https://placehold.co/600x400?text=Immagine+copertina'
-                "
-                alt=""
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <h4 class="card-title">{{ proj.name }}</h4>
-                <p>{{ proj.summary }}</p>
-              </div>
-            </div>
-          </div>
+            :project="proj"
+          />
         </div>
       </div>
     </div>
