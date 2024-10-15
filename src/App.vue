@@ -13,7 +13,7 @@ export default {
   methods: {
     getAllProjects() {
       axios.get("http://127.0.0.1:8000/api/projects").then((resp) => {
-        this.projects = resp.data.results;
+        this.projects = resp.data.results.data;
       });
     },
   },
@@ -37,6 +37,22 @@ export default {
             :project="proj"
           />
         </div>
+      </div>
+      <div class="col-12">
+        <nav
+          aria-label="Page navigation example"
+          class="d-flex justify-content-center"
+        >
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
