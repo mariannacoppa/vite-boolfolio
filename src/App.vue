@@ -33,10 +33,18 @@ export default {
             :key="proj.id"
           >
             <div class="card">
-              <img src="" alt="" class="card-img-top" />
+              <img
+                :src="
+                  proj.image != null
+                    ? `http://127.0.0.1:8000/storage/${proj.image}`
+                    : 'https://placehold.co/600x400?text=Immagine+copertina'
+                "
+                alt=""
+                class="card-img-top"
+              />
               <div class="card-body">
-                <h4 class="card-title">Titolo</h4>
-                <p>Lorem ipsum</p>
+                <h4 class="card-title">{{ proj.name }}</h4>
+                <p>{{ proj.summary }}</p>
               </div>
             </div>
           </div>
