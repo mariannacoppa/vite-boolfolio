@@ -21,6 +21,20 @@ export default {
         />
         <div class="card-body">
           <h4 class="card-title">{{ project.name }}</h4>
+          <p>
+            <strong>Tipologia:</strong><br />{{
+              project.type ? project.type.name : "Tipologia non definita"
+            }}
+          </p>
+          <ul class="list-unstyled d-flex" v-if="project.technologies">
+            <li
+              class="me-1"
+              v-for="tech in project.technologies"
+              :key="tech.id"
+            >
+              {{ tech.name }}
+            </li>
+          </ul>
           <p>{{ project.summary }}</p>
         </div>
       </div>
