@@ -7,7 +7,7 @@ export default {};
       <div class="row">
         <div class="col-12">
           <h1 class="text-center my-5">Laravel Boolfolio</h1>
-          <p>
+          <p class="p-5">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor
             explicabo magni cum ad nobis temporibus distinctio atque autem culpa
             repellendus ipsam ratione fugiat voluptatem error, fugit sunt
