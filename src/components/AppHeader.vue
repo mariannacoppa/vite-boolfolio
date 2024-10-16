@@ -1,5 +1,9 @@
 <script>
-export default {};
+export default {
+  props: {
+    menu: Array,
+  },
+};
 </script>
 <template>
   <header>
@@ -7,11 +11,10 @@ export default {};
       <div class="row">
         <div class="col-12">
           <ul class="list-unstyled d-flex">
-            <li class="me-2">
-              <router-link :to="{ name: 'homepage' }">Home</router-link>
-            </li>
-            <li class="me-2">
-              <router-link :to="{ name: 'portfolio' }">Progetti</router-link>
+            <li class="me-2" v-for="(item, index) in menu" :key="index">
+              <router-link :to="{ name: item.name }">{{
+                item.label
+              }}</router-link>
             </li>
           </ul>
         </div>

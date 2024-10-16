@@ -1,17 +1,20 @@
 <script>
 import AppHeader from "./components/AppHeader.vue";
+import { store } from "./store";
 
 export default {
   components: {
     AppHeader,
   },
   data() {
-    return {};
+    return {
+      store,
+    };
   },
 };
 </script>
 <template>
-  <AppHeader />
+  <AppHeader :menu="store.menuItems" />
   <router-view></router-view>
 </template>
 <style lang="scss">
