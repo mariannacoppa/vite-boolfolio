@@ -10,5 +10,9 @@ export const store = reactive({
       name: "portfolio",
       label: "Portfolio",
     },
+    {
+      name: "aboutus",
+      label: "Chi siamo",
+    },
   ],
 });
