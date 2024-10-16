@@ -1,2 +1,17 @@
 @import "../node_modules/bootstrap/scss/bootstrap.scss";
 @import "@fortawesome/fontawesome-free";
+
+header {
+  background-color: navy;
+  padding: 20px 0px;
+  ul {
+    margin-bottom: 0px;
+    a {
+      text-decoration: none;
+      color: white;
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+}
