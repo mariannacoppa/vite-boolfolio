@@ -13,6 +13,7 @@ export default {
       axios.get("INDIRIZZO").then((resp) => {
         if (resp.data.success) {
           this.project = resp.data.result;
+        } else {
         }
       });
     },
