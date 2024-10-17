@@ -18,11 +18,12 @@ export default {
             this.project = resp.data.results;
           } else {
           }
+          console.log(resp);
         });
     },
-    created() {
-      this.getProject();
-    },
+  },
+  created() {
+    this.getProject();
   },
 };
 </script>
