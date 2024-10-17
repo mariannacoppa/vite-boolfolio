@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       store,
-      project: null,
+      project: {},
     };
   },
   methods: {
@@ -33,22 +33,24 @@ export default {
         <img
           class="img-fluid"
           :src="
-            project.image != null
+            project?.image != null
               ? `http://127.0.0.1:8000/storage/${project?.image}`
               : 'https://placehold.co/600x400?text=Immagine+copertina'
           "
         />
       </div>
       <div class="col-12 col-md-6 col-lg-8">
-        <h1>{{ project.name }}</h1>
+        <h1>{{ project?.name }}</h1>
         <p>
           <strong>Tipologia: </strong
-          >{{ project.type != null ? project.type.name : "Nessuna tipologia" }}
+          >{{
+            project?.type != null ? project?.type.name : "Nessuna tipologia"
+          }}
         </p>
-        <p v-if="project?.technologies.length > 0">
+        <p v-if="project?.technologies?.length > 0">
           <strong>Tecnologie: </strong>
           <span class="pe-2" v-for="tech in project?.technologies">{{
-            tech.name
+            tech?.name
           }}</span>
         </p>
         <p v-else>Nessuna tecnologia</p>
