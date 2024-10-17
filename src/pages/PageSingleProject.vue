@@ -34,7 +34,7 @@ export default {
           class="img-fluid"
           :src="
             project.image != null
-              ? `http://127.0.0.1:8000/storage/${project.image}`
+              ? `http://127.0.0.1:8000/storage/${project?.image}`
               : 'https://placehold.co/600x400?text=Immagine+copertina'
           "
         />
@@ -45,15 +45,15 @@ export default {
           <strong>Tipologia: </strong
           >{{ project.type != null ? project.type.name : "Nessuna tipologia" }}
         </p>
-        <p v-if="project.technologies.length > 0">
+        <p v-if="project?.technologies.length > 0">
           <strong>Tecnologie: </strong>
-          <span class="pe-2" v-for="tech in project.technologies">{{
+          <span class="pe-2" v-for="tech in project?.technologies">{{
             tech.name
           }}</span>
         </p>
         <p v-else>Nessuna tecnologia</p>
       </div>
-      <div class="col-12">Contenuto</div>
+      <div class="col-12">{{ project?.summary }}</div>
     </div>
   </div>
 </template>
