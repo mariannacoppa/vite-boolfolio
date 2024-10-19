@@ -5,18 +5,22 @@ export default {
   data() {
     return {
       store,
+      success: false,
       project: {},
     };
   },
   methods: {
     getProject() {
+      this.success = false;
       // recupero l'indirizzo dalla lista delle rotte e recupero il parametro che ho passato alla rotta, che sarà usato nel backoffice per recuperare il progetto
       axios
         .get(`${store.baseURL}/projects/${this.$route.params.slug}`)
         .then((resp) => {
           if (resp.data.success) {
             this.project = resp.data.results;
+            this.success = true;
           } else {
+            this.$router.push({ name: "single-project-not-found" });
           }
           console.log(resp);
         });
@@ -28,7 +32,8 @@ export default {
 };
 </script>
 <template>
-  <div class="container">
+  <div v-if="!success">Caricamento in corso...</div>
+  <div v-else class="container">
     <div class="row my-5">
       <div class="col-12 col-md-6 col-lg-4">
         <img

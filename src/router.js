@@ -25,6 +25,11 @@ const router = createRouter({
       component: PageSingleProject,
     },
     {
+      path: "/portfolio/:pathMatch(.*)*",
+      name: "single-project-not-found",
+      component: PageNotFound,
+    },
+    {
       path: "/aboutus",
       name: "aboutus",
       component: PageAboutUs,
