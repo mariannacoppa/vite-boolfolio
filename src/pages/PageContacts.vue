@@ -10,6 +10,7 @@ export default {
       email: "",
       phone: "",
       content: "",
+      errors: "",
     };
   },
   methods: {
@@ -23,6 +24,8 @@ export default {
         content: this.content,
       };
 
+      this.errors = {};
+
       axios.post(`${store.baseURL}/contacts`, data).then((resp) => {
         if (resp.data.success) {
           this.name = "";
@@ -30,6 +33,8 @@ export default {
           this.email = "";
           this.phone = "";
           this.content = "";
+        } else {
+          this.errors = resp.data.errors;
         }
       });
     },
@@ -50,55 +55,95 @@ export default {
               <input
                 type="text"
                 class="form-control"
+                :class="errors.name ? 'is-invalid' : ''"
                 name="name"
                 id="name"
                 v-model="name"
                 placeholder="Nome"
               />
+              <p
+                v-for="(error, index) in errors.name"
+                :key="index"
+                class="text-danger"
+              >
+                {{ error }}
+              </p>
             </div>
             <div class="col-12 col-md-6">
               <label for="" class="control-label">Cognome</label>
               <input
                 type="text"
                 class="form-control"
+                :class="errors.surname ? 'is-invalid' : ''"
                 name="surname"
                 id="surname"
                 v-model="surname"
                 placeholder="Cognome"
               />
+              <p
+                v-for="(error, index) in errors.surname"
+                :key="index"
+                class="text-danger"
+              >
+                {{ error }}
+              </p>
             </div>
             <div class="col-12 col-md-6">
               <label for="" class="control-label">Email</label>
               <input
                 type="text"
                 class="form-control"
+                :class="errors.email ? 'is-invalid' : ''"
                 name="email"
                 id="email"
                 v-model="email"
                 placeholder="Email"
               />
+              <p
+                v-for="(error, index) in errors.email"
+                :key="index"
+                class="text-danger"
+              >
+                {{ error }}
+              </p>
             </div>
             <div class="col-12 col-md-6">
               <label for="" class="control-label">Telefono</label>
               <input
                 type="text"
                 class="form-control"
+                :class="errors.phone ? 'is-invalid' : ''"
                 name="phone"
                 id="phone"
                 v-model="phone"
                 placeholder="Telefono"
               />
+              <p
+                v-for="(error, index) in errors.phone"
+                :key="index"
+                class="text-danger"
+              >
+                {{ error }}
+              </p>
             </div>
             <div class="col-12 col-md-6">
               <label for="" class="control-label">Messaggio</label>
               <textarea
                 type="text"
                 class="form-control"
+                :class="errors.content ? 'is-invalid' : ''"
                 name="content"
                 id="content"
                 v-model="content"
                 placeholder="Messaggio"
               ></textarea>
+              <p
+                v-for="(error, index) in errors.content"
+                :key="index"
+                class="text-danger"
+              >
+                {{ error }}
+              </p>
             </div>
             <div class="col-12">
               <button type="submit" class="btn btn-sm btn-success">
