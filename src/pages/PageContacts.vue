@@ -11,10 +11,14 @@ export default {
       phone: "",
       content: "",
       errors: "",
+      success: false,
+      sending: false,
     };
   },
   methods: {
     sendForm() {
+      this.success = false;
+      this.sending = true;
       // axios call needs an object
       const data = {
         name: this.name,
@@ -33,8 +37,11 @@ export default {
           this.email = "";
           this.phone = "";
           this.content = "";
+          this.success = true;
+          this.sending = false;
         } else {
           this.errors = resp.data.errors;
+          this.sending = false;
         }
       });
     },
@@ -146,12 +153,19 @@ export default {
               </p>
             </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-sm btn-success">
-                Invia
+              <button
+                type="submit"
+                class="btn btn-sm btn-success mb-2"
+                :disabled="sending"
+              >
+                {{ sending ? "Invio in corso..." : "Invia" }}
               </button>
             </div>
           </div>
         </form>
+        <div v-if="success != false" class="alert alert-success">
+          Email inviata correttamente: ti contatteremo al più presto.
+        </div>
       </div>
     </div>
   </div>
