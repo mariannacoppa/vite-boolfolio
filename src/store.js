@@ -14,5 +14,9 @@ export const store = reactive({
       name: "aboutus",
       label: "Chi siamo",
     },
+    {
+      name: "contacts",
+      label: "Contatti",
+    },
   ],
 });
