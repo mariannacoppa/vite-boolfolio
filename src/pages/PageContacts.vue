@@ -37,7 +37,8 @@ export default {
           this.email = "";
           this.phone = "";
           this.content = "";
-          this.success = true;
+          // this.success = true;
+          this.$router.push({ name: "thank-you" });
           this.sending = false;
         } else {
           this.errors = resp.data.errors;
